@@ -24,5 +24,11 @@ int fatorial(int n) {
 }
 
 int main() {
+    int n;
+
+    printf("digite um inteiro positivo: ");
+    scanf("%d", &n);
+
+    printf("%d", fatorial(n));
     return 0;
 }
