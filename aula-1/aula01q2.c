@@ -1,5 +1,7 @@
 #include<stdio.h>
-#include<stlib.h>
+#include<stdlib.h>
+
+#define ERR 1
 
 int main() {
     int inp = 2
@@ -15,6 +17,6 @@ int f(int dominio) {
         return dominio*dominio;
     else {
         printf("err!\n");
-        exit(1)
+        exit(ERR)
     }
 }
