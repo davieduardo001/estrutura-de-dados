@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<stlib.h>
+#include<stdlib.h>
 
 //char funcao1(int dominio) {
 //    char contraDominio;
@@ -29,9 +29,9 @@ int main() {
 
 char f(int x) {
     if(x == 1) return('C');
-    else if (X == 2) return('D');
-    else if (X == 3) return('E');
-    else if (X == 4) return('B');
+    else if (x == 2) return('D');
+    else if (x == 3) return('E');
+    else if (x == 4) return('B');
     else {
         printf("err!");
         exit(1);
