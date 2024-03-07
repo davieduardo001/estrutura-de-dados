@@ -11,5 +11,10 @@ int main() {
 }
 
 int f(int dominio) {
-    return dominio*dominio;
+    if(dominio == 2  || dominio == 3 || dominio == 4 || dominio == 5)
+        return dominio*dominio;
+    else {
+        printf("err!\n");
+        exit(1)
+    }
 }
