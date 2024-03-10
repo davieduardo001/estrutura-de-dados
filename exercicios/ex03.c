@@ -1,18 +1,18 @@
 #include<stdio.h>
 
-int fat(int x) {
+int fat(int n) {
 
-   if(x > 1) {
-        
-   }
-   else if(x == 1) return 1;
-   else{
-        printf("do not exists!\n");
-        exit(1);
-   }
+    if(n <= 1) {
+        return 1;
+    } else {
+        return n * fat(n - 1);
+    }
 
 }
 
 int main() {
+
+    printf("fatorial de %d eh %d\n", 4, fat(4));
+
     return 0;
 }
