@@ -1,26 +1,33 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//char funcao1(int dominio) {
-//    char contraDominio;
-//    switch(dominio) {
-//        case 1:
-//            contraDominio = 'C';
-//            break;
-//        case 2:
-//            contraDominio = '';
-//            break;
-//        default:
-//            print('err');
-//    }
-//
-//    return contraDominio;
-//}
+char funcao1(int dominio) {
+    char contraDominio;
+    switch(dominio) {
+        case 1:
+            contraDominio = 'C';
+            break;
+        case 2:
+            contraDominio = 'D';
+            break;
+        case 3:
+            contraDominio = 'E';
+            break;
+        case 4:
+            contraDominio = 'F';
+            break;
+        default:
+            printf("err!\n");
+            exit(1);
+    }
+
+    return contraDominio;
+}
 
 char f(int);
 
 int main() {
-    char ch = f(3);
+    char ch = funcao1(54);
 
     printf("return: %c\n", ch);
 
