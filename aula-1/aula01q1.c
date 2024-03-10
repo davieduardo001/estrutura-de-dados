@@ -22,7 +22,7 @@ char f(int);
 int main() {
     char ch = f(3);
 
-    printf("return: %c", ch);
+    printf("return: %c\n", ch);
 
     return 0;
 }
@@ -33,7 +33,7 @@ char f(int x) {
     else if (x == 3) return('E');
     else if (x == 4) return('B');
     else {
-        printf("err!");
+        printf("err!\n");
         exit(1);
     }
 }
