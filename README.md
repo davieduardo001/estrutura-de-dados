@@ -2,9 +2,9 @@
 
 O ambiente de desenvolvimento esta rodando dentro de um container docker
 
-A imagem esta presente aqui [link para a imagem docker](https://google.com):
+A imagem esta presente aqui [link para a imagem docker](https://hub.docker.com/repository/docker/davieduardo001/dev-env/general):
 
 ```shell
 # dentro do projeto clonado
-docker run -v $PWD:/opt/share -it NOME-DA-IMAGEM
+docker run -v $PWD/:/opt/share -it davieduardo001/dev-env
 ```
