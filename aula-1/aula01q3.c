@@ -1,5 +1,7 @@
 #include<stdio.h>
 
+//calculo de um fatorial
+
 int fatorial(int n) {
     int resp = 1;
     for(int i = 1; i <= n; i++) {

@@ -1,5 +1,7 @@
 #include<stdio.h>
 
+// fatorial recursivo
+
 int fat(int n) {
 
     if(n <= 1) {

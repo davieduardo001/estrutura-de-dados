@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// dominio => contra dominio
+
 char funcao1(int dominio) {
     char contraDominio;
     switch(dominio) {

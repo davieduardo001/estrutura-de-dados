@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// recursividade
+
 int f(int x) {
     if(x == 0) return 3;
     else if(x > 0) return (2*f(x-1)+5);

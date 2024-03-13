@@ -3,6 +3,8 @@
 
 #define ERR 1
 
+// dominio/contra dominio
+
 int main() {
     int inp = 2
     int out = f(inp);
