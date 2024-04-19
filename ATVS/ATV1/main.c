@@ -4,6 +4,15 @@
 
 #define NOTA_DE_CORTE 7.0
 
+typedef struct {
+    char nome[100];
+    char telefone[100];
+    char curso[100];
+    float nota1; 
+    float nota2;
+    char *consideracaoFinal;
+} Aluno;
+
 void lerCSV(const char *filename) {
     FILE *entrada = fopen(filename, "r");
     FILE *saida = fopen("saida.csv", "w");
@@ -22,35 +31,40 @@ void lerCSV(const char *filename) {
 
     // Lê cada linha subsequente
     while (fgets(line, sizeof(line), entrada)) {
+
+        Aluno aluno;
+
+        // NOME
         char *token = strtok(line, ",");
-        float nota1, nota2;
-        char nome[50];
-        // Ignora o campo nome (primeiro campo)
-        strcpy(nome, token);
-        // Pula para o próximo campo
+        strcpy(aluno.nome, token);
+
+        // TELEFONE       
         token = strtok(NULL, ",");
-        // Ignora o campo telefone (segundo campo)
-        // Pula para o próximo campo
+        strcpy(aluno.telefone, token);
+
+        // CURSO
         token = strtok(NULL, ",");
-        // Ignora o campo curso (terceiro campo)
-        // Pula para o próximo campo
+        strcpy(aluno.curso, token);
+
+        // NOTA 1
         token = strtok(NULL, ",");
-        // Lê a nota1 (quarto campo)
-        nota1 = atof(token);
-        // Pula para o próximo campo
+        aluno.nota1 = atof(token);
+
+        // NOTA 2
         token = strtok(NULL, ",");
-        // Lê a nota2 (quinto campo)
-        nota2 = atof(token);
+        aluno.nota2 = atof(token);
 
         // Calcula a média
-        float media = (nota1 + nota2) / 2.0;
+        double media = (double)(aluno.nota1 + aluno.nota2) / 2.0;
 
         // Verifica se o aluno foi aprovado ou reprovado
-        const char *aprovado = (media >= NOTA_DE_CORTE) ? "APROVADO" : "REPROVADO";
+        aluno.consideracaoFinal = (media >= NOTA_DE_CORTE) ? "APROVADO" : "REPROVADO";
 
-        // string formtada:
-        char string_formatada[100];
-        sprintf(string_formatada, "%s,%.f,%s", nome, media, aprovado);
+        // string formatada com NOME+MEDIA+CONSIDERACAO_FINAL
+        char string_formatada[100000];
+        sprintf(string_formatada, "%s,%.2lf,%s", aluno.nome, (double)media, aluno.consideracaoFinal);
+
+        // Envio para o output
         printf("%s\n", string_formatada);
         fprintf(saida, "%s\n", string_formatada);
     }
