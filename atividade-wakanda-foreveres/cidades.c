@@ -8,6 +8,31 @@ int compareCities(const void *a, const void *b) {
     return ((Cidade *)a)->Posicao - ((Cidade *)b)->Posicao;
 }
 
+// Verifica se todas as restrições são atendidas
+int verificarRestricoes(Estrada *estrada) {
+    // Verifica se T e N estão dentro dos limites permitidos
+    if (estrada->T < 3 || estrada->T > 106 || estrada->N < 2 || estrada->N > 104) {
+        printf("Erro: Restrições não atendidas para T ou N.\n");
+        return 0;
+    }
+
+    // Verifica se todas as posições das cidades estão dentro dos limites e são diferentes umas das outras
+    for (int i = 0; i < estrada->N; i++) {
+        if (estrada->C[i].Posicao <= 0 || estrada->C[i].Posicao >= estrada->T) {
+            printf("Erro: Restrições não atendidas para as posições das cidades.\n");
+            return 0;
+        }
+        for (int j = i + 1; j < estrada->N; j++) {
+            if (estrada->C[i].Posicao == estrada->C[j].Posicao) {
+                printf("Erro: Restrições não atendidas para Xi ≠ Xj.\n");
+                return 0;
+            }
+        }
+    }
+
+    return 1; // Todas as restrições são atendidas
+}
+
 // Inicializa cidades no TAD Estrada
 Estrada *getEstrada(const char *nomeArquivo) {
     FILE *file = fopen(nomeArquivo, "r");
@@ -56,6 +81,13 @@ Estrada *getEstrada(const char *nomeArquivo) {
     }
 
     fclose(file);
+
+    if (!verificarRestricoes(estrada)) {
+        free(estrada->C);
+        free(estrada);
+        return NULL;
+    }
+
     qsort(estrada->C, estrada->N, sizeof(Cidade), compareCities);
     return estrada;
 }
