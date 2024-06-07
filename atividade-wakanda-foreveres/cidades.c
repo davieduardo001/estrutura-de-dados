@@ -46,8 +46,8 @@ Estrada *getEstrada(const char *nomeArquivo) {
     }
 
     for (int i = 0; i < estrada->N; i++) {
-        if (fscanf(file, "%d %s", &estrada->C[i].Posicao, estrada->C[i].Nome) != 2) {
-            printf("Erro ao ler os dados da cidade %d\n", i);
+        if (fscanf(file, "%d %[^\n]", &estrada->C[i].Posicao, estrada->C[i].Nome) != 2) {
+            printf("Erro ao ler os dados da cidade %d\n", i+1);
             free(estrada->C);
             free(estrada);
             fclose(file);
@@ -123,7 +123,11 @@ int main() {
     }
 
     double menorVizinhanca = calcularMenorVizinhanca(nomeArquivo);
-    printf("Menor vizinhança: %.2f\n", menorVizinhanca);
+    if (menorVizinhanca != -1) {
+        printf("Menor vizinhança: %.2f\n", menorVizinhanca);
+    } else {
+        printf("Erro ao calcular a menor vizinhança.\n");
+    }
 
     char *cidade = cidadeMenorVizinhanca(nomeArquivo);
     if (cidade) {
