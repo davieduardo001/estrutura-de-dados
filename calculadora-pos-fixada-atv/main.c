@@ -58,10 +58,13 @@ double executar_operacao(char operador, double op1, double op2) {
 
 // Função para executar funções matemáticas
 double executar_funcao(char *funcao, double op) {
+    // Executa funções matemáticas, como seno, cosseno, tangente e logaritmo.
+    // Converte o ângulo para radianos antes de calcular as funções trigonométricas.
+
     if (strcmp(funcao, "raiz") == 0) return sqrt(op);
-    else if (strcmp(funcao, "sen") == 0) return sin(op);
-    else if (strcmp(funcao, "cos") == 0) return cos(op);
-    else if (strcmp(funcao, "tg") == 0) return tan(op);
+    else if (strcmp(funcao, "sen") == 0) return sin(op * M_PI / 180.0); // Convertendo graus para radianos
+    else if (strcmp(funcao, "cos") == 0) return cos(op * M_PI / 180.0); // Convertendo graus para radianos
+    else if (strcmp(funcao, "tg") == 0) return tan(op * M_PI / 180.0); // Convertendo graus para radianos
     else if (strcmp(funcao, "log") == 0) return log10(op);
     else {
         printf("Função não suportada: %s\n", funcao);
@@ -71,9 +74,14 @@ double executar_funcao(char *funcao, double op) {
 
 // Função para avaliar uma expressão pós-fixada
 void avaliar_posfixa(char *expressao) {
+    // Avalia uma expressão matemática no formato pós-fixo.
+    // Empilha números e resultados intermediários, realiza operações aritméticas e executa funções matemáticas conforme necessário.
+    // Imprime o resultado final da expressão.
+
     Pilha pilha;
     inicializar(&pilha);
     char *token = strtok(expressao, " ");
+
     while (token != NULL) {
         if (isdigit(token[0]) || (token[0] == '-' && isdigit(token[1]))) {
             empilhar(&pilha, atof(token));
@@ -82,12 +90,19 @@ void avaliar_posfixa(char *expressao) {
             double op1 = desempilhar(&pilha);
             empilhar(&pilha, executar_operacao(token[0], op1, op2));
         } else {
-            double op = desempilhar(&pilha);
-            empilhar(&pilha, executar_funcao(token, op));
+            double op;
+            if (strcmp(token, "cos") == 0 || strcmp(token, "sen") == 0 || strcmp(token, "tg") == 0 || strcmp(token, "log") == 0) {
+                op = desempilhar(&pilha);
+                empilhar(&pilha, executar_funcao(token, op));
+            } else {
+                op = atof(token);
+                empilhar(&pilha, op);
+            }
         }
         token = strtok(NULL, " ");
     }
-    printf("Resultado: %lf\n", desempilhar(&pilha));
+
+    printf("Resultado: %.2lf\n", desempilhar(&pilha));
 }
 
 int main() {
