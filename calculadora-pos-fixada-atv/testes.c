@@ -161,10 +161,10 @@ int main() {
     ExpressaoResultado expressoes[MAX_EXPR]; // Array para armazenar as expressões e resultados
 
     // Definições das expressões de exemplo
-    char expressao1[] = "3 4 2 * 1 5 - 2 3 ^ ^ / +";
-    char expressao2[] = "7 2 * 4 +";
-    char expressao3[] = "8 5 2 4 + * +";
-    char expressao4[] = "6 2 / 3 + 4 *";
+    char expressao1[] = "5 1 2 + 4 * + 3 -";
+    char expressao2[] = "6 2 3 + ^ 4 5 * /";
+    char expressao3[] = "7 4 5 + 2 3 ^ * -";
+    char expressao4[] = "8 3 2 * 4 2 ^ / +";
     char expressao5[] = "9 5 2 8 * 4 + * +";
     char expressao6[] = "2 3 + log 5 /";
     char expressao7[] = "10 log 3 ^ 2 +";
